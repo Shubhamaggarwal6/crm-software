@@ -1,0 +1,160 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans:wght@300;400;500;600;700&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&family=Noto+Sans+Gujarati:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --background: 210 40% 98%;
+    --foreground: 215 28% 17%;
+    --card: 0 0% 100%;
+    --card-foreground: 215 28% 17%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 28% 17%;
+    --primary: 232 65% 30%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 228 40% 48%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 210 20% 94%;
+    --muted-foreground: 215 14% 40%;
+    --accent: 232 65% 95%;
+    --accent-foreground: 232 65% 30%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    --expired: 215 14% 63%;
+    --expired-foreground: 0 0% 100%;
+    --border: 214 20% 88%;
+    --input: 214 20% 88%;
+    --ring: 232 65% 30%;
+    --radius: 0.375rem;
+    --sidebar-background: 232 65% 30%;
+    --sidebar-foreground: 232 65% 95%;
+    --sidebar-primary: 0 0% 100%;
+    --sidebar-primary-foreground: 232 65% 30%;
+    --sidebar-accent: 232 50% 25%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 232 50% 35%;
+    --sidebar-ring: 228 40% 48%;
+    --sidebar-muted: 232 30% 50%;
+    --bottomnav-height: 3.5rem;
+    --chart-1: 232 65% 30%;
+    --chart-2: 142 71% 45%;
+    --chart-3: 38 92% 50%;
+    --chart-4: 0 72% 51%;
+    --chart-5: 262 83% 58%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+  /* iOS zoom prevention */
+  input, select, textarea {
+    font-size: 16px;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  @media (min-width: 768px) {
+    input, select, textarea {
+      font-size: 14px;
+    }
+  }
+}
+
+@layer components {
+  .status-chip {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded text-xs font-semibold;
+  }
+  .status-chip-paid {
+    @apply status-chip bg-green-100 text-green-800;
+  }
+  .status-chip-pending {
+    @apply status-chip bg-red-100 text-red-800;
+  }
+  .status-chip-partial {
+    @apply status-chip bg-amber-100 text-amber-800;
+  }
+  .status-chip-expired {
+    @apply status-chip bg-gray-200 text-gray-600;
+  }
+  .status-chip-active {
+    @apply status-chip bg-green-100 text-green-800;
+  }
+  .status-chip-warning {
+    @apply status-chip bg-amber-100 text-amber-800;
+  }
+  .status-chip-critical {
+    @apply status-chip bg-red-100 text-red-800;
+  }
+
+  .hero-card {
+    @apply bg-card rounded-md border p-4 md:p-6 shadow-sm;
+  }
+
+  .chat-bubble-bot {
+    @apply bg-accent text-accent-foreground rounded-md rounded-tl-none p-3 max-w-[90%] md:max-w-[80%];
+  }
+  .chat-bubble-user {
+    @apply bg-primary text-primary-foreground rounded-md rounded-tr-none p-3 max-w-[90%] md:max-w-[80%] ml-auto;
+  }
+
+  .suggestion-chip {
+    @apply px-3 py-1.5 rounded border border-primary/30 bg-accent text-primary text-sm font-medium cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors;
+  }
+
+  .table-zebra tr:nth-child(even) {
+    @apply bg-muted/50;
+  }
+
+  /* Mobile card for table rows */
+  .mobile-card {
+    @apply bg-card rounded-md border p-3 shadow-sm space-y-2;
+  }
+
+  /* Download buttons */
+  .btn-pdf {
+    @apply inline-flex items-center gap-1.5 rounded-md px-3 py-2 text-sm font-medium bg-red-600 text-red-50 hover:bg-red-700 transition-colors;
+  }
+  .btn-excel {
+    @apply inline-flex items-center gap-1.5 rounded-md px-3 py-2 text-sm font-medium bg-green-600 text-green-50 hover:bg-green-700 transition-colors;
+  }
+  .btn-print {
+    @apply inline-flex items-center gap-1.5 rounded-md px-3 py-2 text-sm font-medium bg-blue-600 text-blue-50 hover:bg-blue-700 transition-colors;
+  }
+  .btn-zip {
+    @apply inline-flex items-center gap-1.5 rounded-md px-3 py-2 text-sm font-medium bg-purple-600 text-purple-50 hover:bg-purple-700 transition-colors;
+  }
+
+  /* Bottom nav */
+  .bottom-nav {
+    @apply fixed bottom-0 left-0 right-0 z-50 flex items-center bg-sidebar border-t border-sidebar-border;
+    height: var(--bottomnav-height);
+  }
+  .bottom-nav-item {
+    @apply flex-1 flex flex-col items-center justify-center gap-0.5 py-1 text-sidebar-foreground/60 transition-colors;
+  }
+  .bottom-nav-item.active {
+    @apply text-sidebar-primary;
+  }
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: white !important;
+  }
+}
